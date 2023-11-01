@@ -28,6 +28,10 @@ byte packetBuffer[ NTP_PACKET_SIZE];
 
 void getNTPtime()
 {
+   int16_t tmp =0;
+  if (tmp) {
+ 
+  Serial.println("не дошло сюда");
   unsigned long _unixTime = 0;
 
   if (WiFi.status() == WL_CONNECTED)
@@ -74,7 +78,10 @@ void getNTPtime()
   }
   yield();
   if (_unixTime > 0) UnixTimestamp = _unixTime; // store universally available time stamp
+ }
+
 }
+
 
 
 strDateTime ConvertUnixTimeStamp( unsigned long _tempTimeStamp) {

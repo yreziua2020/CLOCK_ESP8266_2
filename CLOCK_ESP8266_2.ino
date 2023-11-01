@@ -563,6 +563,9 @@ const char *weatherHost = "api.openweathermap.org";
 
 void getWeatherData()
 {
+  int16_t tmp =0;
+  if (tmp) {
+ 
   Serial.print("connecting to "); Serial.println(weatherHost);
   if (client.connect(weatherHost, 80)) {
     client.println(String("GET /data/2.5/weather?id=") + cityID + "&units=metric&appid=" + weatherKey + "&lang=ru" + "\r\n" +
@@ -630,6 +633,7 @@ if (windDeg>=299 && windDeg<=344) windDegString = "Северо-западный
 
   
   Serial.println("POGODA: " + String(temp,0) + "\n");
+  }
 }
 
 // =======================================================================
@@ -641,7 +645,9 @@ if (windDeg>=299 && windDeg<=344) windDegString = "Северо-западный
 const char *weatherHostz = "api.openweathermap.org";
 
 void getWeatherDataz()
-{
+ {  
+  int16_t tmp =0;
+  if (tmp) {
   Serial.print("connecting to "); Serial.println(weatherHostz);
   if (client.connect(weatherHostz, 80)) {
     client.println(String("GET /data/2.5/forecast/daily?id=") + cityID + "&units=metric&appid=" + weatherKey + "&lang=ru" + "&cnt=2" + "\r\n" +
@@ -699,6 +705,8 @@ if (wDeg>=253 && wDeg<=298) windDegString = "Западный";
 if (wDeg>=299 && wDeg<=344) windDegString = "Северо-западный";
 
   weatherStringz1 = "Ветер " + windDegString + " " + String(wSpeed,1) + " м/с";
+
+ }
 }
 // =======================================================================
   void tvoday(String line){
