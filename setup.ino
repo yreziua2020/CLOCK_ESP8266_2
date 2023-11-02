@@ -169,8 +169,10 @@ String(WiFi.localIP()[3])
 
 
   for (uint8_t i=0; i<ARRAY_SIZE(catalog); i++)
-  {
+  {   //P.getSpeed()=10 ВСЕГДА
+    Serial.print("P.getSpeed()="); Serial.println(P.getSpeed());
     catalog[i].speed *= P.getSpeed();
+
     catalog[i].pause *= 500;
   }
 }
@@ -190,6 +192,8 @@ getTime();
 weatherKey = config.DeviceName.c_str();
 cityID = config.email.c_str();
 
-  delay(5000);
+  delay(1000);
+
+Serial.println(tyuii);
 
 }

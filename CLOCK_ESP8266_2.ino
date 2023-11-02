@@ -24,6 +24,15 @@
 
 MD_Parola P = MD_Parola(CS_PIN, MAX_DEVICES);
 #define ARRAY_SIZE(x)  (sizeof(x)/sizeof(x[0]))
+enum ttttt
+{
+    rtyyy,
+    tyuii,
+    tyui,
+    tyyy
+};
+
+
 
 // Global data
 typedef struct
