@@ -1,15 +1,14 @@
 //==========================================================
 void displayInfo(){
      // static uint32_t tmp2 ;
-       static long tmp2 ;
-   if (!P.displayAnimate()) tmp2++;
+     //  static long tmp2 ;
+   //если идет анимация то дожидаемся пока не закончиться  P.displayAnimate ==1 значит анимация закончена
     if (P.displayAnimate()){
       
     utf8rus(Text).toCharArray(buf, 256);
     P.displayText(buf, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect); 
     
-    if (!P.displayAnimate()) {disp = 2; Serial.print("disp =");Serial.print(disp); Serial.print("tmp2 =");Serial.println(tmp2);}
-
+    if (!P.displayAnimate()) {disp = 2; } //P.displayAnimate==0 значит что анимация стартонула, думаю что необходимо если чтто не сработало, чтоб повторно отправить
     }
 }
 //==========================================================
@@ -17,7 +16,7 @@ void displayInfo1(){
     if (P.displayAnimate()){
     utf8rus(Text).toCharArray(buf, 256);
     P.displayText(buf, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
-    if (!P.displayAnimate()) { disp = 4; Serial.print("disp =");Serial.println(disp);}
+    if (!P.displayAnimate()) { disp = 4; }
     }
 }
 //==========================================================
@@ -25,7 +24,7 @@ void displayInfo2(){
     if (P.displayAnimate()){
     utf8rus(Text).toCharArray(buf, 256);
     P.displayText(buf, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
-    if (!P.displayAnimate()) { disp = 6;Serial.print("disp =");Serial.println(disp);}
+    if (!P.displayAnimate()) { disp = 6;}
     }
 }
 //==========================================================
@@ -33,28 +32,28 @@ void displayInfo3(){
     if (P.displayAnimate()){
     utf8rus(Text).toCharArray(buf, 256);
     P.displayText(buf, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
-    if (!P.displayAnimate())  {disp = 0;Serial.print("disp =");Serial.println(disp);}
+    if (!P.displayAnimate())  {disp = 0;}
     }
 }
 //==========================================================
 void scrollText(){
-  static  long tmp3 ;
-  if (!P.displayAnimate()) tmp3++;
+  
+  
   if  (P.displayAnimate()){
   utf8rus(Text).toCharArray(buf, 256);
   P.displayScroll(buf, PA_LEFT, PA_SCROLL_LEFT, 40);
 
-  if (!P.displayAnimate()) {disp = 3;Serial.print("disp =");Serial.println(disp);Serial.print("tmp3 =");Serial.println(tmp3);tmp3=0;}
+  if (!P.displayAnimate()) {disp = 3;}
   }
 }
 //==========================================================
 void scrollText1(){
-       static  long tmp5 ;
+  
   if  (P.displayAnimate()){
   utf8rus(Text).toCharArray(buf, 256);
   P.displayScroll(buf, PA_LEFT, PA_SCROLL_LEFT, 40);
-   tmp5++;
-  if (!P.displayAnimate()) {disp = 5;Serial.print("disp =");Serial.print(disp); Serial.print("tmp5 =");Serial.println(tmp5);tmp5=0;}
+   
+  if (!P.displayAnimate()) {disp = 5;}
   }
 }
 //==========================================================
@@ -62,7 +61,7 @@ void scrollText2(){
   if  (P.displayAnimate()){
   utf8rus(Text).toCharArray(buf, 256);
   P.displayScroll(buf, PA_LEFT, PA_SCROLL_LEFT, 40);
-  if (!P.displayAnimate()) {disp = 0;Serial.print("disp =");Serial.println(disp);}
+  if (!P.displayAnimate()) {disp = 0;}
   }
 }
 //==========================================================
@@ -70,7 +69,7 @@ void scrollText3(){
   if  (P.displayAnimate()){
   utf8rus(Text).toCharArray(buf, 256);
   P.displayScroll(buf, PA_LEFT, PA_SCROLL_LEFT, 40);
-  if (!P.displayAnimate()) {disp = 0;Serial.print("disp =");Serial.println(disp);}
+  if (!P.displayAnimate()) {disp = 0;}
   }
 }
 
