@@ -194,6 +194,6 @@ cityID = config.email.c_str();
 
   delay(1000);
 
-Serial.println(tyuii);
+
 
 }

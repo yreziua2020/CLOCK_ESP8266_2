@@ -4,20 +4,22 @@ void displayInfo(){
      //  static long tmp2 ;
    //если идет анимация то дожидаемся пока не закончиться  P.displayAnimate ==1 значит анимация закончена
     if (P.displayAnimate()){
-      
-    utf8rus(Text).toCharArray(buf, 256);
-   Serial.print("speed="); Serial.println(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
-   P.displayText(buf, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect); 
     
-    if (!P.displayAnimate()) {disp = 2; } //P.displayAnimate==0 значит что анимация стартонула, думаю что необходимо если чтто не сработало, чтоб повторно отправить
+    utf8rus(Text).toCharArray(buf, 256);
+  
+   P.displayText(catalog[rnd].psz, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect); 
+    rnd ++;if (rnd >ARRAY_SIZE(catalog)) rnd=0;  
+     Serial.print("rnd="); Serial.print(rnd); Serial.print(" couter="); Serial.print(catalog[rnd].countt);Serial.print(" 0_speed="); Serial.print(catalog[rnd].speed);Serial.print(" effect="); Serial.println((String)catalog[rnd].effect);
+    
+    if (!P.displayAnimate()) {disp = 2; } //2//P.displayAnimate==0 значит что анимация стартонула, думаю что необходимо если чтто не сработало, чтоб повторно отправить
     }
 }
 //==========================================================
 void displayInfo1(){
     if (P.displayAnimate()){
     utf8rus(Text).toCharArray(buf, 256);
-    Serial.print("speed="); Serial.println(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
-    P.displayText(buf, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
+    Serial.print("speed="); Serial.print(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
+    P.displayText(catalog[rnd].psz, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
     if (!P.displayAnimate()) { disp = 4; }
     }
 }
@@ -25,8 +27,8 @@ void displayInfo1(){
 void displayInfo2(){
     if (P.displayAnimate()){
     utf8rus(Text).toCharArray(buf, 256);
-    Serial.print("speed="); Serial.println(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
-    P.displayText(buf, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
+    Serial.print("speed="); Serial.print(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
+    P.displayText(catalog[rnd].psz, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
     if (!P.displayAnimate()) { disp = 6;}
     }
 }
@@ -34,8 +36,8 @@ void displayInfo2(){
 void displayInfo3(){
     if (P.displayAnimate()){
     utf8rus(Text).toCharArray(buf, 256);
-    Serial.print("speed="); Serial.println(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
-    P.displayText(buf, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
+    Serial.print("speed="); Serial.print(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
+    P.displayText(catalog[rnd].psz, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
     if (!P.displayAnimate())  {disp = 0;}
     }
 }
@@ -45,7 +47,7 @@ void scrollText(){
   
   if  (P.displayAnimate()){
   utf8rus(Text).toCharArray(buf, 256);
-  P.displayScroll(buf, PA_LEFT, PA_SCROLL_LEFT, 40);
+  P.displayScroll(buf, PA_LEFT, PA_SCROLL_RIGHT, 40);
 
   if (!P.displayAnimate()) {disp = 3;}
   }
@@ -54,8 +56,9 @@ void scrollText(){
 void scrollText1(){
   
   if  (P.displayAnimate()){
+    Text="Привет мир так долго небыло тебя";
   utf8rus(Text).toCharArray(buf, 256);
-  P.displayScroll(buf, PA_LEFT, PA_SCROLL_LEFT, 40);
+  P.displayScroll(buf, PA_LEFT, PA_SCROLL_RIGHT, 40);
    
   if (!P.displayAnimate()) {disp = 5;}
   }
@@ -64,7 +67,7 @@ void scrollText1(){
 void scrollText2(){
   if  (P.displayAnimate()){
   utf8rus(Text).toCharArray(buf, 256);
-  P.displayScroll(buf, PA_LEFT, PA_SCROLL_LEFT, 40);
+  P.displayScroll(buf, PA_LEFT, PA_SCROLL_RIGHT, 40);
   if (!P.displayAnimate()) {disp = 0;}
   }
 }
@@ -72,7 +75,7 @@ void scrollText2(){
 void scrollText3(){
   if  (P.displayAnimate()){
   utf8rus(Text).toCharArray(buf, 256);
-  P.displayScroll(buf, PA_LEFT, PA_SCROLL_LEFT, 40);
+  P.displayScroll(buf, PA_LEFT, PA_SCROLL_RIGHT, 40);
   if (!P.displayAnimate()) {disp = 0;}
   }
 }

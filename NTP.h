@@ -28,8 +28,8 @@ byte packetBuffer[ NTP_PACKET_SIZE];
 
 void getNTPtime()
 {
-   int16_t tmp =0;
-  if (tmp) {
+   
+  if (tmp_cl_pog) {
  
   Serial.println("не дошло сюда");
   unsigned long _unixTime = 0;

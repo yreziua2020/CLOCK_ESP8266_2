@@ -9,8 +9,8 @@ const char *weatherHost = "api.openweathermap.org";
 
 void getWeatherData()
 {
-  int16_t tmp =0;
-  if (tmp) {
+ 
+  if (tmp_cl_pog) {
  
   Serial.print("connecting to "); Serial.println(weatherHost);
   if (client.connect(weatherHost, 80)) {
@@ -92,8 +92,8 @@ const char *weatherHostz = "api.openweathermap.org";
 
 void getWeatherDataz()
  {  
-  int16_t tmp =0;
-  if (tmp) {
+
+  if (tmp_cl_pog) {
   Serial.print("connecting to "); Serial.println(weatherHostz);
   if (client.connect(weatherHostz, 80)) {
     client.println(String("GET /data/2.5/forecast/daily?id=") + cityID + "&units=metric&appid=" + weatherKey + "&lang=ru" + "&cnt=2" + "\r\n" +

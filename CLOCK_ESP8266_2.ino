@@ -18,25 +18,19 @@
 #include "Fonts.h"
 
 #define  MAX_DEVICES 4 
-#define CLK_PIN     D5 // or SCK
-#define DATA_PIN    D7 // or MOSI
-#define CS_PIN      D8 // or SS
+//#define CLK_PIN     D5 // or SCK
+//#define DATA_PIN    D7 // or MOSI
+#define CS_PIN     15 // D8 // or SS
+#define HARDWARE_TYPE MD_MAX72XX::FC16_HW
 
-MD_Parola P = MD_Parola(CS_PIN, MAX_DEVICES);
+
+MD_Parola P = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 #define ARRAY_SIZE(x)  (sizeof(x)/sizeof(x[0]))
-enum ttttt
-{
-    rtyyy,
-    tyuii,
-    tyui,
-    tyyy
-};
-
-
-
+ int16_t tmp_cl_pog =0;  //если истина то будет оновлять время погоду
 // Global data
 typedef struct
 {
+  uint16_t      countt;
   textEffect_t  effect;   // text effect to display
   char *        psz;      // text string nul terminated
   uint16_t      speed;    // speed multiplier of library default
@@ -45,29 +39,29 @@ typedef struct
 
 sCatalog  catalog[] =
 {
-  { PA_SLICE, "SLICE", 1, 1 },
-  { PA_MESH, "MESH", 10, 1 },
-  { PA_FADE, "FADE", 20, 1 },
-  { PA_WIPE, "WIPE", 5, 1 },
-  { PA_WIPE_CURSOR, "WPE_C", 4, 1 },
-  { PA_OPENING, "OPEN", 3, 1 },
-  { PA_OPENING_CURSOR, "OPN_C", 4, 1 },
-  { PA_CLOSING, "CLOSE", 3, 1 },
-  { PA_CLOSING_CURSOR, "CLS_C", 4, 1 },
-  { PA_BLINDS, "BLIND", 7, 1 },
-  { PA_DISSOLVE, "DSLVE", 7, 1 },
-  { PA_SCROLL_UP, "SC_U", 5, 1 },
-  { PA_SCROLL_DOWN, "SC_D", 5, 1 },
-  { PA_SCROLL_LEFT, "SC_L", 5, 1 },
-  { PA_SCROLL_RIGHT, "SC_R", 5, 1 },
-  { PA_SCROLL_UP_LEFT, "SC_UL", 7, 1 },
-  { PA_SCROLL_UP_RIGHT, "SC_UR", 7, 1 },
-  { PA_SCROLL_DOWN_LEFT, "SC_DL", 7, 1 },
-  { PA_SCROLL_DOWN_RIGHT, "SC_DR", 7, 1 },
-  { PA_SCAN_HORIZ, "SCANH", 4, 1 },
-  { PA_SCAN_VERT, "SCANV", 3, 1 },
-  { PA_GROW_UP, "GRW_U", 7, 1 },
-  { PA_GROW_DOWN, "GRW_D", 7, 1 },
+  { 0, PA_SLICE, "SLICE", 1, 1 },
+  { 1, PA_MESH, "MESH", 10, 1 },
+  { 2, PA_FADE, "FADE", 20, 1 },
+  { 3, PA_WIPE, "WIPE", 5, 1 },
+  { 4, PA_WIPE_CURSOR, "WPE_C", 4, 1 },
+  { 5, PA_OPENING, "OPEN", 3, 1 },
+  { 6, PA_OPENING_CURSOR, "OPN_C", 4, 1 },
+  { 7, PA_CLOSING, "CLOSE", 3, 1 },
+  { 8, PA_CLOSING_CURSOR, "CLS_C", 4, 1 },
+  { 9, PA_BLINDS, "BLIND", 7, 1 },
+  { 10, PA_DISSOLVE, "DSLVE", 7, 1 },
+  { 11, PA_SCROLL_UP, "SC_U", 5, 1 },
+  { 12, PA_SCROLL_DOWN, "SC_D", 5, 1 },
+  { 13, PA_SCROLL_LEFT, "SC_L", 5, 1 },
+  { 14, PA_SCROLL_RIGHT, "SC_R", 5, 1 },
+  { 15, PA_SCROLL_UP_LEFT, "SC_UL", 7, 1 },
+  { 16, PA_SCROLL_UP_RIGHT, "SC_UR", 7, 1 },
+  { 17, PA_SCROLL_DOWN_LEFT, "SC_DL", 7, 1 },
+  { 18, PA_SCROLL_DOWN_RIGHT, "SC_DR", 7, 1 },
+  { 19, PA_SCAN_HORIZ, "SCANH", 4, 1 },
+  { 20, PA_SCAN_VERT, "SCANV", 3, 1 },
+  { 21, PA_GROW_UP, "GRW_U", 7, 1 },
+  { 22, PA_GROW_DOWN, "GRW_D", 7, 1 },
 };
 
 
@@ -179,9 +173,23 @@ void loop() {
   //**** Normal Skecth code here ... 
 t.update();
   if (lp >= 10) lp=0;
+  if (disp ==0){      
+        if (lp==0){  getWeatherData();       getWeatherDataz();  }   
+        
+        if   (P.displayAnimate()) {getTime();  disp=1;  lp++; }
+     }
+   //if (disp ==1){ rnd = random(0, ARRAY_SIZE(catalog));   Text = h + ":" + m;                           displayInfo();  }
 
-   if (disp ==0)   {      if (lp==0){  getWeatherData();       getWeatherDataz();  }   getTime();  disp=1;  lp++;       }
-   if (disp ==1){ rnd = random(0, ARRAY_SIZE(catalog));   Text = h + ":" + m;                           displayInfo();  }
+    //static uint16_t tmp_ef;
+   if (disp ==1){ 
+     
+     //rnd = random(0, ARRAY_SIZE(catalog)); 
+     Text = h + ":" + m;                          
+      displayInfo(); 
+      
+      
+       }
+   
    if (disp ==2){                                         Text = wd + " " + d + " " + mon + " " + y;    scrollText();   }
    if (disp ==3){ rnd = random(0, ARRAY_SIZE(catalog));   Text = h + ":" + m;                           displayInfo1(); }
    if (disp ==4){                                         Text = weatherString;                         scrollText1();  }
@@ -206,7 +214,7 @@ digitalWrite(16, HIGH);
 }
 
 void ResetAll(){
-  //EEPROM.begin(512);
+  //EEPROM.begin()512);
   // write a 0 to all 512 bytes of the EEPROM
  // for (int i = 0; i < 512; i++){  EEPROM.write(i, 0);  }
   //EEPROM.end();
