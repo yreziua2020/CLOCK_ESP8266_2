@@ -9,7 +9,7 @@ void displayInfo(){
   
    P.displayText(catalog[rnd].psz, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect); 
     rnd ++;if (rnd >ARRAY_SIZE(catalog)) rnd=0;  
-     Serial.print("rnd="); Serial.print(rnd); Serial.print(" couter="); Serial.print(catalog[rnd].countt);Serial.print(" 0_speed="); Serial.print(catalog[rnd].speed);Serial.print(" effect="); Serial.println((String)catalog[rnd].effect);
+    // Serial.print("rnd="); Serial.print(rnd); Serial.print(" couter="); Serial.print(catalog[rnd].countt);Serial.print(" 0_speed="); Serial.print(catalog[rnd].speed);Serial.print(" effect="); Serial.println((String)catalog[rnd].effect);
     
     if (!P.displayAnimate()) {disp = 2; } //2//P.displayAnimate==0 значит что анимация стартонула, думаю что необходимо если чтто не сработало, чтоб повторно отправить
     }
@@ -18,7 +18,7 @@ void displayInfo(){
 void displayInfo1(){
     if (P.displayAnimate()){
     utf8rus(Text).toCharArray(buf, 256);
-    Serial.print("speed="); Serial.print(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
+   // Serial.print("speed="); Serial.print(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
     P.displayText(catalog[rnd].psz, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
     if (!P.displayAnimate()) { disp = 4; }
     }
@@ -27,7 +27,7 @@ void displayInfo1(){
 void displayInfo2(){
     if (P.displayAnimate()){
     utf8rus(Text).toCharArray(buf, 256);
-    Serial.print("speed="); Serial.print(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
+    //Serial.print("speed="); Serial.print(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
     P.displayText(catalog[rnd].psz, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
     if (!P.displayAnimate()) { disp = 6;}
     }
@@ -36,7 +36,7 @@ void displayInfo2(){
 void displayInfo3(){
     if (P.displayAnimate()){
     utf8rus(Text).toCharArray(buf, 256);
-    Serial.print("speed="); Serial.print(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
+   // Serial.print("speed="); Serial.print(catalog[rnd].speed);Serial.print("effect="); Serial.println(catalog[rnd].effect);
     P.displayText(catalog[rnd].psz, PA_CENTER, catalog[rnd].speed, 5000, catalog[rnd].effect, catalog[rnd].effect);   
     if (!P.displayAnimate())  {disp = 0;}
     }

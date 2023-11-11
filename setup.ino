@@ -28,7 +28,7 @@ void setup() {
       Serial.println("Booting");
       
       WiFi.mode(WIFI_STA);
-
+config.dhcp=0;
   if (!config.dhcp)
   {
     WiFi.config(IPAddress(config.IP[0], config.IP[1], config.IP[2], config.IP[3] ),  IPAddress(config.Gateway[0], config.Gateway[1], config.Gateway[2], config.Gateway[3] ) , IPAddress(config.Netmask[0], config.Netmask[1], config.Netmask[2], config.Netmask[3] ) , IPAddress(config.DNS[0], config.DNS[1], config.DNS[2], config.DNS[3] ));
@@ -157,20 +157,13 @@ void setup() {
 
 
 
-ipstring = (
-String(WiFi.localIP()[0]) +"." +
-String(WiFi.localIP()[1]) + "." +
-String(WiFi.localIP()[2]) + "." +
-String(WiFi.localIP()[3])
-);
+ipstring = (String(WiFi.localIP()[0]) +"." + String(WiFi.localIP()[1]) + "." +String(WiFi.localIP()[2]) + "." +String(WiFi.localIP()[3]));
 
 
 {
-
-
   for (uint8_t i=0; i<ARRAY_SIZE(catalog); i++)
   {   //P.getSpeed()=10 ВСЕГДА
-    Serial.print("P.getSpeed()="); Serial.println(P.getSpeed());
+    //Serial.print("P.getSpeed()="); Serial.println(P.getSpeed());
     catalog[i].speed *= P.getSpeed();
 
     catalog[i].pause *= 500;
@@ -179,16 +172,10 @@ String(WiFi.localIP()[3])
 
 t.every(1000, ISRsecondTick);
 
-if  (WiFi.status() == WL_CONNECTED) {
-getTime();
-//scrollIP();
-
-  //  t.every(10000, getTime);
-
-  }  
-   getTime();
-   getWeatherData();
-   getWeatherDataz();
+if  (WiFi.status() == WL_CONNECTED) {getTime();scrollIP();    t.every(30000, getTime);  }  
+   //getTime();
+  // getWeatherData();
+  // getWeatherDataz();
 weatherKey = config.DeviceName.c_str();
 cityID = config.email.c_str();
 

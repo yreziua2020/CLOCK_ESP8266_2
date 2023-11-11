@@ -173,10 +173,10 @@ void loop() {
   //**** Normal Skecth code here ... 
 t.update();
   if (lp >= 10) lp=0;
-  if (disp ==0){      
-        if (lp==0){  getWeatherData();       getWeatherDataz();  }   
+  if (disp ==0){  
+        if (lp==0){  getWeatherData();      getWeatherDataz();  }   //getTime(); 
         
-        if   (P.displayAnimate()) {getTime();  disp=1;  lp++; }
+        if   (P.displayAnimate()) {  disp=1;  lp++; }
      }
    //if (disp ==1){ rnd = random(0, ARRAY_SIZE(catalog));   Text = h + ":" + m;                           displayInfo();  }
 
@@ -191,10 +191,10 @@ t.update();
        }
    
    if (disp ==2){                                         Text = wd + " " + d + " " + mon + " " + y;    scrollText();   }
-   if (disp ==3){ rnd = random(0, ARRAY_SIZE(catalog));   Text = h + ":" + m;                           displayInfo1(); }
-   if (disp ==4){                                         Text = weatherString;                         scrollText1();  }
-   if (disp ==5){ rnd = random(0, ARRAY_SIZE(catalog));   Text = h + ":" + m;                           displayInfo2(); }
-   if (disp ==6){                                         Text = weatherStringz + " " + weatherStringz1;scrollText2();  }
+   if (disp ==3){    rnd = random(0, ARRAY_SIZE(catalog));   Text = h + ":" + m;                           displayInfo1(); }
+   if (disp ==4){                                           Text = weatherString;                         scrollText1();  }
+   if (disp ==5){   rnd = random(0, ARRAY_SIZE(catalog));   Text = h + ":" + m;                           displayInfo2(); }
+   if (disp ==6){                                            Text = weatherStringz + " " + weatherStringz1;scrollText2();  }
    
   //============длительное нажатие кнопки форматирует EEPROM
 int buttonstate=digitalRead(buttonPin);
@@ -231,6 +231,8 @@ void getTime(){
     d = String (DateTime.day);
 
     y = String (DateTime.year);
+
+    Serial.print("God=");Serial.println(DateTime.year);
      
     if (DateTime.month == 1) mon = "Января";
     if (DateTime.month == 2) mon = "Февраля";

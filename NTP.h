@@ -28,7 +28,7 @@ byte packetBuffer[ NTP_PACKET_SIZE];
 
 void getNTPtime()
 {
-   
+  //Serial.println("не дошло сюда");
   if (tmp_cl_pog) {
  
   Serial.println("не дошло сюда");
@@ -92,12 +92,14 @@ strDateTime ConvertUnixTimeStamp( unsigned long _tempTimeStamp) {
   unsigned long days;
 
   time = (uint32_t)_tempTimeStamp;
+   Serial.print("time=");Serial.println(time);
   _tempDateTime.second = time % 60;
   time /= 60; // now it is minutes
   _tempDateTime.minute = time % 60;
   time /= 60; // now it is hours
   _tempDateTime.hour = time % 24;
   time /= 24; // now it is days
+   Serial.print("time=");Serial.println(time);
   _tempDateTime.wday = ((time + 4) % 7) + 1;  // Sunday is day 1
 
   year = 0;
@@ -106,8 +108,9 @@ strDateTime ConvertUnixTimeStamp( unsigned long _tempTimeStamp) {
     year++;
   }
   _tempDateTime.year = year; // year is offset from 1970
-
-  days -= LEAP_YEAR(year) ? 366 : 365;
+  
+ 
+    days -= LEAP_YEAR(year) ? 366 : 365;
   time  -= days; // now it is days in this year, starting at 0
 
   days = 0;
