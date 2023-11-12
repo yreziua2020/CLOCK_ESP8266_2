@@ -159,7 +159,7 @@ boolean summerTime(unsigned long _timeStamp ) {
 
 unsigned long adjustTimeZone(unsigned long _timeStamp, int _timeZone, bool _isDayLightSavingSaving) {
   strDateTime _tempDateTime;
-  _timeStamp += _timeZone *  360; // adjust timezone
+  _timeStamp += _timeZone *  3600; // adjust timezone
   // printTime("Innerhalb adjustTimeZone ", ConvertUnixTimeStamp(_timeStamp));
   if (_isDayLightSavingSaving && summerTime(_timeStamp)) _timeStamp += 3600; // Sommerzeit beachten
   return _timeStamp;
