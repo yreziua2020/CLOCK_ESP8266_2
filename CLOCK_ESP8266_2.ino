@@ -26,7 +26,7 @@
 
 MD_Parola P = MD_Parola(HARDWARE_TYPE, CS_PIN, MAX_DEVICES);
 #define ARRAY_SIZE(x)  (sizeof(x)/sizeof(x[0]))
- int16_t tmp_cl_pog =0;  //если истина то будет оновлять время погоду
+ int16_t tmp_cl_pog =1;  //если истина то будет оновлять время погоду
 // Global data
 typedef struct
 {
@@ -232,7 +232,9 @@ void getTime(){
 
     y = String (DateTime.year);
 
-    Serial.print("God=");Serial.println(DateTime.year);
+    
+    Serial.print(DateTime.hour);Serial.print(":"); Serial.print(DateTime.minute);Serial.print(":");Serial.print(DateTime.second);
+    Serial.print(" "); Serial.print(DateTime.day);Serial.print("/"); Serial.print(DateTime.wday);Serial.print("  "); Serial.println(DateTime.year);
      
     if (DateTime.month == 1) mon = "Января";
     if (DateTime.month == 2) mon = "Февраля";
